@@ -11,16 +11,21 @@ const App = () => {
     /*contadorUpdate((contadorValorAnterior) => { // modificar el valor mediante el valor anterior
             return contadorValorAnterior + 1;*/
   };
+
+  const Contador = (props) => {
+    return <h2>{props.value}</h2>;
+  };
   const handleClickReset = () => {
     contadorUpdate(0);
   };
 
   const esPar = contadorValue % 2 === 0;
+  const mensaje = esPar ? "si es par" : "es impar";
 
   return (
     <div>
-      <h2>{contadorValue}</h2>
-      <p>{esPar ? "si es par" : "es impar"}</p>
+      <Contador value={contadorValue}></Contador>
+      <p>{mensaje}</p>
       <button onClick={handleClick}>Incrementar</button>
       <button onClick={handleClickReset}>Incrementar</button>
     </div>
