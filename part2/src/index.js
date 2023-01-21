@@ -1,35 +1,41 @@
-import ReactDOM from "react-dom";
 import { useState } from "react";
-const rootElement = document.getElementById("root");
+import ReactDOM from "react-dom";
 
+// const App = () => {
+//   const [valueLeft, setLeft] = useState(1);
+//   const [valueRight, setRight] = useState(2);
+
+//   return (
+//     <div>
+//       {valueLeft}
+//       <button onClick={() => setLeft(valueLeft + 1)}>Left</button>
+//       <button onClick={() => setRight(valueRight + 2)}>Right</button>
+//       {valueRight}
+//     </div>
+//   );
+// };
 const App = () => {
-  let contador = useState(0);
-  const [contadorValue, contadorUpdate] = contador;
-  const handleClick = () => {
-    contadorUpdate(contadorValue + 1);
-    //contadorUpdate(contadorValue + 1);//modificar directamente el valor
-    /*contadorUpdate((contadorValorAnterior) => { // modificar el valor mediante el valor anterior
-            return contadorValorAnterior + 1;*/
+  const [counters, setCounter] = useState({ left: 0, right: 2 , mensaje: "mensaje en el estado"});
+  const handleClickLeft = () => {
+    setCounter({ ...counters, left: counters.left + 1,});
   };
-
-  const Contador = (props) => {
-    return <h2>{props.value}</h2>;
+  const handleClickRight = () => {
+    setCounter({ ...counters, right: counters.right + 2 });
   };
-  const handleClickReset = () => {
-    contadorUpdate(0);
-  };
-
-  const esPar = contadorValue % 2 === 0;
-  const mensaje = esPar ? "si es par" : "es impar";
 
   return (
     <div>
-      <Contador value={contadorValue}></Contador>
-      <p>{mensaje}</p>
-      <button onClick={handleClick}>Incrementar</button>
-      <button onClick={handleClickReset}>Incrementar</button>
+      {counters.left}
+      <button onClick={handleClickLeft}>Left</button>
+      <button onClick={handleClickRight}>Right</button>
+      {counters.right}
+
+      <br />
+      {counters.mensaje}
     </div>
   );
 };
+
+const rootElement = document.getElementById("root");
 
 ReactDOM.render(<App />, rootElement);
